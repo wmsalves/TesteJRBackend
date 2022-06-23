@@ -1,3 +1,14 @@
+## INSTRUÇÕES PARA O TESTE TÉCNICO
+
+Crie um fork deste projeto (https://github.com/CAPYS-IT/TesteJRBackend).
+É preciso estar logado na sua conta GitHub;
+Quando você começar, faça um commit vazio com a mensagem "Iniciando o teste de tecnologia" e quando terminar, faça o commit com uma mensagem "Finalizado o teste de tecnologia";
+Commit após cada ciclo de refatoração pelo menos;
+Não use branches;
+Você deve prover evidências suficientes de que sua solução está completa indicando, no mínimo, que ela funciona;
+Não há restrição quanto ao uso de bibliotecas de apoio;
+No final envie para o RH o link do seu projeto.
+
 ## O TESTE
 
 - Implementar o metodo lstTarefas da classe Tarefas na Tarefascontroller/lstTarefas e retorna a lista de tarefas. **CODE** 200.
