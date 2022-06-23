@@ -8,6 +8,7 @@
 - Você deve prover evidências suficientes de que sua solução está completa indicando, no mínimo, que ela funciona;
 - Não há restrição quanto ao uso de bibliotecas de apoio;
 - No final envie para o RH o link do seu projeto.
+- Uso do Visual Studio 2022
 
 ## O TESTE
 
