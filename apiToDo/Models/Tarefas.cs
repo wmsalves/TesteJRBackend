@@ -41,19 +41,30 @@ namespace apiToDo.Models
                 throw new Exception($"Erro ao inserir tarefa: {ex.Message}", ex);
             }
         }
-        public void DeletarTarefa(int ID_TAREFA)
+        public List<TarefaDTO> DeletarTarefa(int ID_TAREFA)
         {
             try
             {
-                List<TarefaDTO> lstResponse = lstTarefas();
-                var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
-                TarefaDTO Tarefa2 = lstResponse.Where(x=> x.ID_TAREFA == Tarefa.ID_TAREFA).FirstOrDefault();
-                lstResponse.Remove(Tarefa2);
+                // busca a tarefa com o ID fornecido na list
+                var tarefa = lstTarefasDB.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
+                // verifica se a tarefa foi encontrada
+                if (tarefa == null)
+                {
+                    // se nao encontrou, lança uma erro
+                    throw new Exception($"Tarefa com ID {ID_TAREFA} não encontrada.");
+                }
+                // remove a tarefa encontrada da list
+                lstTarefasDB.Remove(tarefa);
+
+                // retorna a list de tarefas atualizada
+                return lstTarefasDB;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw ex;
+                // exception para qualquer outro erro que possa ocorrer
+                throw new Exception($"Erro ao deletar tarefa: {ex.Message}", ex);
             }
         }
     }
-}
+ }
+

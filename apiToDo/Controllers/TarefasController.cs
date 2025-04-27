@@ -43,18 +43,18 @@ namespace apiToDo.Controllers
             }
         }
 
-        [HttpGet("DeletarTarefa")]
+        [HttpDelete("DeletarTarefa")]
         public ActionResult DeleteTask([FromQuery] int ID_TAREFA)
         {
             try
             {
-
-                return StatusCode(200);
+                var tarefas = new Tarefas().DeletarTarefa(ID_TAREFA);
+                return Ok(tarefas); // retorna list atualizada
             }
 
             catch (Exception ex)
             {
-                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}" });
+                return BadRequest(new { msg = $"Ocorreu um erro ao deletar tarefa: {ex.Message}" });
             }
         }
     }
