@@ -31,15 +31,15 @@ namespace apiToDo.Controllers
         {
             try
             {
-
-                return StatusCode(200);
+                var tarefas = new Tarefas().InserirTarefa(Request);
+                return Ok(tarefas);
 
 
             }
 
             catch (Exception ex)
             {
-                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}" });
+                return BadRequest(new { msg = $"Ocorreu um erro em sua API: {ex.Message}" });
             }
         }
 

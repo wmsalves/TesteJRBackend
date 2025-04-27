@@ -7,48 +7,38 @@ namespace apiToDo.Models
 {
     public class Tarefas
     {
+
+        private static List<TarefaDTO> lstTarefasDB = new List<TarefaDTO>() 
+        {
+            new TarefaDTO {ID_TAREFA = 1, DS_TAREFA = "Fazer Compras"},
+            new TarefaDTO {ID_TAREFA = 2, DS_TAREFA = "Fazer Atividade Faculdade"},
+            new TarefaDTO {ID_TAREFA = 3, DS_TAREFA = "Subir Projeto de Teste no Github"}
+        };
         public List<TarefaDTO> lstTarefas()
         {
             try
             {
-                List<TarefaDTO> lstTarefas = new List<TarefaDTO>();
-
-                lstTarefas.Add(new TarefaDTO
-                {
-                    ID_TAREFA = 1,
-                    DS_TAREFA = "Fazer Compras"
-                });
-
-                lstTarefas.Add(new TarefaDTO
-                {
-                    ID_TAREFA = 2,
-                    DS_TAREFA = "Fazer Atividad Faculdade"
-                });
-
-                lstTarefas.Add(new TarefaDTO
-                {
-                    ID_TAREFA = 3,
-                    DS_TAREFA = "Subir Projeto de Teste no GitHub"
-                });
-
-                return lstTarefas;
+                return lstTarefasDB;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw ex;
+                throw new Exception($"Erro ao listar tarefas: {ex.Message}", ex);
             }
         }
 
-        public void InserirTarefa(TarefaDTO Request)
+        public List<TarefaDTO> InserirTarefa(TarefaDTO Request)
         {
             try
             {
-                List<TarefaDTO> lstResponse = lstTarefas();
-                lstResponse.Add(Request);
+                if (Request == null)
+                    throw new ArgumentNullException(nameof(Request), "A tarefa enviada é nula.");
+
+                lstTarefasDB.Add(Request);
+                return lstTarefasDB;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw ex;
+                throw new Exception($"Erro ao inserir tarefa: {ex.Message}", ex);
             }
         }
         public void DeletarTarefa(int ID_TAREFA)
