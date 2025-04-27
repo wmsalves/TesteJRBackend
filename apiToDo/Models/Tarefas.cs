@@ -14,6 +14,8 @@ namespace apiToDo.Models
             new TarefaDTO {ID_TAREFA = 2, DS_TAREFA = "Fazer Atividade Faculdade"},
             new TarefaDTO {ID_TAREFA = 3, DS_TAREFA = "Subir Projeto de Teste no Github"}
         };
+
+        // metodo para listar as tarefas
         public List<TarefaDTO> lstTarefas()
         {
             try
@@ -26,6 +28,48 @@ namespace apiToDo.Models
             }
         }
 
+        // metodo para atualizar uma tarefa
+        public List<TarefaDTO> AtualizarTarefa (TarefaDTO Request)
+        {
+            try 
+            { 
+                var tarefa = lstTarefasDB.FirstOrDefault(x => x.ID_TAREFA == Request.ID_TAREFA);
+
+                if (tarefa == null)
+                {
+                    throw new Exception($"Tarefa com ID {Request.ID_TAREFA} não encontrada.");
+                }
+
+                tarefa.DS_TAREFA = Request.DS_TAREFA;
+                return lstTarefasDB;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao atualizar tarefa: {ex.Message}", ex);
+            }
+        }
+
+        // metodo para buscar uma tarefa
+        public TarefaDTO BuscarTarefa(int ID_TAREFA)
+        {
+            try
+            {
+                var tarefa = lstTarefasDB.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
+
+                if (tarefa == null)
+                {
+                    throw new Exception($"Tarefa com ID {ID_TAREFA} não encontrada.");
+                }
+
+                return tarefa;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao buscar tarefa: {ex.Message}", ex);
+            }
+        }
+
+        // metodo para inserir uma tarefa
         public List<TarefaDTO> InserirTarefa(TarefaDTO Request)
         {
             try
@@ -41,6 +85,8 @@ namespace apiToDo.Models
                 throw new Exception($"Erro ao inserir tarefa: {ex.Message}", ex);
             }
         }
+
+        // metodo para deletar uma tarefa
         public List<TarefaDTO> DeletarTarefa(int ID_TAREFA)
         {
             try
